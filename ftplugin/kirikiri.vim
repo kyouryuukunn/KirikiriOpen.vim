@@ -34,9 +34,9 @@ function s:JumpLabel(line,file)
 		if !search('^\'.strpart(a:line, s:labelstart, s:labelend - s:labelstart + 1),'ws')
 			echo 'ラベルを発見出来ず'
 		endif
-		unlet s:storageend
+		unlet! s:storageend
 	endif
-	unlet s:labelstart s:labelend s:storagestart
+	unlet! s:labelstart s:labelend s:storagestart
 endfunction
 endif
 
@@ -64,7 +64,7 @@ function s:KirikiriFileOpen(line,file,command,exelist)
 	if !strlen(s:path)
 		echo 'pathを所得出来ませんでした。'
 	else
-		if g:kirikiri_use_vimproc == 1
+		if g:kirikiriopen_use_vimproc == 1
 			if &ssl == 1
 				let s:path = substitute(s:path, '/', '\\\\', 'g')
 			else
@@ -78,7 +78,7 @@ function s:KirikiriFileOpen(line,file,command,exelist)
 			exe ":!".a:command.' "'.substitute(s:path, '/', '\\', 'g').'"'
 		endif
 	endif
-	unlet s:storagestart s:storageend s:storagename s:path
+	unlet! s:storagestart s:storageend s:storagename s:path
 endfunction
 endif
 
@@ -88,16 +88,16 @@ function s:KirikiriOpen()
 	" なし、あったらあり
 	let s:kirikiripath = strpart( expand("%:p:h"), 0, strridx(expand("%:p:h"), s:split) )
 	let s:line = getline(".")
-	if s:line =~ g:kirikiri_jump_dict.tag
-		call s:JumpLabel(s:line, g:kirikiri_jump_dict.file)
+	if s:line =~ g:kirikiriopen_jump_dict.tag
+		call s:JumpLabel(s:line, g:kirikiriopen_jump_dict.file)
 	else
-		for s:item in g:kirikirilist
+		for s:item in g:kirikiriopen_list
 			if s:line =~ s:item.tag
 				call s:KirikiriFileOpen(s:line,s:item.file,s:item.command,s:item.exelist)
 			endif
 		endfor
 	endif
-	unlet s:line s:kirikiripath
+	unlet! s:line s:kirikiripath
 endfunction
 endif
 
@@ -107,13 +107,13 @@ function s:KirikiriJump() " フォーカス移動の関係でジャンプだけ分けた。
 	" なし、あったらあり
 	let s:kirikiripath = strpart( expand("%:p:h"), 0, strridx(expand("%:p:h"), s:split) )
 	let s:line = getline(".")
-	call s:JumpLabel(s:line, g:kirikiri_jump_dict.file)
-	unlet s:line s:kirikiripath
+	call s:JumpLabel(s:line, g:kirikiriopen_jump_dict.file)
+	unlet! s:line s:kirikiripath
 endfunction
 endif
 
 let &cpo = s:save_cpo
-unlet s:save_cpo
+unlet! s:save_cpo
 
 command! -buffer KirikiriOpen :call s:KirikiriOpen()
 command! -buffer KirikiriJump :call s:KirikiriJump()
