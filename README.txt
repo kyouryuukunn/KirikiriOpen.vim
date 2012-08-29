@@ -25,8 +25,8 @@ let g:kirikiriopen_use_vimproc = 1
 let g:kirikiriopen_jump_dict = {'tag': 'call\|jump\|link\|button', 'file':'storage'}
 
 let g:kirikiriopen_list = [
-	\{'tag':'\<trans\>','file':'rule','command':'e:/soft/XnView/xnview.exe','exelist':['png']},
-	\{'tag':'\<image\>\|\<haikei\>\|\<haikei2\>\|\<tr\>\|\<tc\>','file':'storage','command':'e:/soft/XnView/xnview.exe','exelist':['png','jpg','tlg']},
+	\{'tag':'\<trans\>','file':'rule','command':'e:/soft/Vix/vix.exe','exelist':['png']},
+	\{'tag':'\<image\>\|\<haikei\>\|\<haikei2\>\|\<tr\>\|\<tc\>','file':'storage','command':'e:/soft/Vix/vix.exe','exelist':['png','jpg','tlg']},
 	\{'tag':'\<playse\>\|\<playbgm\>\|\<fadeinbgm\>','file':'storage','command':'e:/soft/MPC-HC.1.6.2.4902.x86/mpc-hc.exe','exelist':['ogg']}
 	\]
 
