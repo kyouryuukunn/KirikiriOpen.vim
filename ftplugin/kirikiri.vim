@@ -26,7 +26,7 @@ function s:JumpLabel(line,file)
 		endif
 		let s:storageend = stridx( a:line, '.ks', s:storagestart) + 2
 		if a:line !~ '\*' " ƒ‰ƒxƒ‹‚ªÈ—ª‚³‚ê‚Ä‚¢‚é‚Æ‚«—p
-			exe ':e  "'.s:kirikiripath.s:split.'scenario'.s:split.strpart(a:line, s:storagestart, s:storageend - s:storagestart + 1).'"'
+			exe ':e '.s:kirikiripath.s:split.'scenario'.s:split.strpart(a:line, s:storagestart, s:storageend - s:storagestart + 1)
 		else
 			exe ':grep \'.strpart(a:line, s:labelstart, s:labelend - s:labelstart + 1).' "'.s:kirikiripath.s:split.'scenario'.s:split.strpart(a:line, s:storagestart, s:storageend - s:storagestart + 1).'"'
 		endif
