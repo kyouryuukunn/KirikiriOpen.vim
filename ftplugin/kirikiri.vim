@@ -26,7 +26,7 @@ function s:JumpLabel(line,file)
 		endif
 		let s:storageend = stridx( a:line, '.ks', s:storagestart) + 2
 		if a:line !~ '\*' " ラベルが省略されているとき用
-			exe ':e '.s:kirikiripath.s:split.'scenario'.s:split.strpart(a:line, s:storagestart, s:storageend - s:storagestart + 1)
+			exe ':e  '.s:kirikiripath.s:split.'scenario'.s:split.strpart(a:line, s:storagestart, s:storageend - s:storagestart + 1)
 		else
 			exe ':grep \'.strpart(a:line, s:labelstart, s:labelend - s:labelstart + 1).' "'.s:kirikiripath.s:split.'scenario'.s:split.strpart(a:line, s:storagestart, s:storageend - s:storagestart + 1).'"'
 		endif
@@ -48,10 +48,10 @@ function s:KirikiriFileOpen(line,file,command,exelist)
 	else
 		let s:storagestart += strlen(a:file) + 1
 	endif
-	let s:storageend = match( a:line, '[ \]"]', s:storagestart) - 1
+	let s:storageend = match( a:line, '[ \]"]\|$', s:storagestart) - 1
 	let s:storagename = strpart(a:line, s:storagestart, s:storageend - s:storagestart + 1)
 	
-	if s:storagename =~ '\....'
+	if s:storagename =~ '\....' " 拡張子が3文字前提
 		let s:path = findfile(s:storagename, s:kirikiripath.s:split.'**')
 	else
 		for s:exe in a:exelist
