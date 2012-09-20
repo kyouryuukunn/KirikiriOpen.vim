@@ -16,7 +16,7 @@ endif
 if !exists("*s:JumpLabel")
 function s:JumpLabel(line,file)
 	let s:labelstart = stridx(a:line, '*')
-	let s:labelend = match( a:line, '[ "\]]', s:labelstart) - 1
+	let s:labelend = match( a:line, '[ "\]]\|$', s:labelstart) - 1
 	let s:storagestart = stridx(a:line,a:file)
 	if s:storagestart != -1 " 外部ファイルへジャンプ
 		if a:line =~ 'storage=".*"' " ダブルクォートで囲まれているか
@@ -28,10 +28,10 @@ function s:JumpLabel(line,file)
 		if a:line !~ '\*' " ラベルが省略されているとき用
 			exe ':e  '.s:kirikiripath.s:split.'scenario'.s:split.strpart(a:line, s:storagestart, s:storageend - s:storagestart + 1)
 		else
-			exe ':grep \'.strpart(a:line, s:labelstart, s:labelend - s:labelstart + 1).' "'.s:kirikiripath.s:split.'scenario'.s:split.strpart(a:line, s:storagestart, s:storageend - s:storagestart + 1).'"'
+			exe ':grep ^\'.strpart(a:line, s:labelstart, s:labelend - s:labelstart + 1).' "'.s:kirikiripath.s:split.'scenario'.s:split.strpart(a:line, s:storagestart, s:storageend - s:storagestart + 1).'"'
 		endif
 	else " 現在ファイルのラベルへジャンプ
-		if !search('^\'.strpart(a:line, s:labelstart, s:labelend - s:labelstart + 1),'ws')
+		if !search('^\'.strpart(a:line, s:labelstart, s:labelend - s:labelstart + 1).'\>','ws')
 			echo 'ラベルを発見出来ず'
 		endif
 		unlet! s:storageend
