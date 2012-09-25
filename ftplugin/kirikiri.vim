@@ -14,7 +14,7 @@ else
 endif
 
 if !exists("*s:JumpLabel")
-function s:JumpLabel(line,file)
+function s:JumpLabel(line,file) " {{{
 	let s:labelstart = stridx(a:line, '*')
 	let s:labelend = match( a:line, '[ "\]]\|$', s:labelstart) - 1
 	let s:storagestart = stridx(a:line,a:file)
@@ -26,9 +26,11 @@ function s:JumpLabel(line,file)
 		endif
 		let s:storageend = stridx( a:line, '.ks', s:storagestart) + 2
 		if a:line !~ '\*' " ラベルが省略されているとき用
-			exe ':e  '.s:kirikiripath.s:split.'scenario'.s:split.strpart(a:line, s:storagestart, s:storageend - s:storagestart + 1)
+			let s:path = findfile(strpart(a:line, s:storagestart, s:storageend - s:storagestart + 1), s:kirikiripath.s:split.'**')
+			exe ':e  '.s:path
 		else
-			exe ':grep ^\'.strpart(a:line, s:labelstart, s:labelend - s:labelstart + 1).' "'.s:kirikiripath.s:split.'scenario'.s:split.strpart(a:line, s:storagestart, s:storageend - s:storagestart + 1).'"'
+			let s:path = findfile(strpart(a:line, s:storagestart, s:storageend - s:storagestart + 1), s:kirikiripath.s:split.'**')
+			exe ':grep ^\'.strpart(a:line, s:labelstart, s:labelend - s:labelstart + 1).' '.s:path
 		endif
 	else " 現在ファイルのラベルへジャンプ
 		if !search('^\'.strpart(a:line, s:labelstart, s:labelend - s:labelstart + 1).'\>','ws')
@@ -37,11 +39,11 @@ function s:JumpLabel(line,file)
 		unlet! s:storageend
 	endif
 	unlet! s:labelstart s:labelend s:storagestart
-endfunction
+endfunction " }}}
 endif
 
 if !exists("*s:KirikiriFileOpen")
-function s:KirikiriFileOpen(line,file,command,exelist)
+function s:KirikiriFileOpen(line,file,command,exelist) " {{{
 	let s:storagestart = stridx(a:line,a:file)
 	if a:line =~ a:file.'=".*"' " "があるかないか
 		let s:storagestart += strlen(a:file) + 2
@@ -79,14 +81,14 @@ function s:KirikiriFileOpen(line,file,command,exelist)
 		endif
 	endif
 	unlet! s:storagestart s:storageend s:storagename s:path
-endfunction
+endfunction " }}}
 endif
 
 if !exists("*s:KirikiriOpen")
-function s:KirikiriOpen()
+function s:KirikiriOpen() " {{{
 	" expand("%:p:h")はファイルがカレントドライブにあったらドライブレター
 	" なし、あったらあり
-	let s:kirikiripath = strpart( expand("%:p:h"), 0, strridx(expand("%:p:h"), s:split) )
+	let s:kirikiripath = strpart( expand("%:p:h"), 0, strridx(expand("%:p:h"), 'data') ).'data'
 	let s:line = getline(".")
 	if s:line =~ g:kirikiriopen_jump_dict.tag
 		call s:JumpLabel(s:line, g:kirikiriopen_jump_dict.file)
@@ -98,14 +100,14 @@ function s:KirikiriOpen()
 		endfor
 	endif
 	unlet! s:line s:kirikiripath
-endfunction
+endfunction " }}}
 endif
 
 if !exists("*s:KirikiriJump")
 function s:KirikiriJump() " フォーカス移動の関係でジャンプだけ分けた。
 	" expand("%:p:h")はファイルがカレントドライブにあったらドライブレター
 	" なし、あったらあり
-	let s:kirikiripath = strpart( expand("%:p:h"), 0, strridx(expand("%:p:h"), s:split) )
+	let s:kirikiripath = strpart( expand("%:p:h"), 0, strridx(expand("%:p:h"), 'data') ).'data'
 	let s:line = getline(".")
 	call s:JumpLabel(s:line, g:kirikiriopen_jump_dict.file)
 	unlet! s:line s:kirikiripath
@@ -117,3 +119,5 @@ unlet! s:save_cpo
 
 command! -buffer KirikiriOpen :call s:KirikiriOpen()
 command! -buffer KirikiriJump :call s:KirikiriJump()
+
+" vim: ts=2 sw=2 sts=2 foldmethod=marker nowrap
