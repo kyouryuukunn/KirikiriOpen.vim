@@ -114,10 +114,25 @@ function s:KirikiriJump() " フォーカス移動の関係でジャンプだけ分けた。
 endfunction
 endif
 
+if !exists("*s:KirikiriExe")
+function s:KirikiriExe()
+	" expand("%:p:h")はファイルがカレントドライブにあったらドライブレター
+	" なし、あったらあり
+	let s:kirikiripath = strpart( expand("%:p:h"), 0, strridx(expand("%:p:h"), 'data') )
+	if g:kirikiriopen_use_vimproc == 1
+		exec ':call vimproc#system_bg('''.s:kirikiripath.'krkr.eXe'')'
+	else
+		exec ':!'.s:kirikiripath.'krkr.eXe'
+	endif
+	unlet! s:kirikiripath
+endfunction
+endif
+
 let &cpo = s:save_cpo
 unlet! s:save_cpo
 
 command! -buffer KirikiriOpen :call s:KirikiriOpen()
 command! -buffer KirikiriJump :call s:KirikiriJump()
+command! -buffer KirikiriExe  :call s:KirikiriExe()
 
 " vim: ts=2 sw=2 sts=2 foldmethod=marker nowrap
