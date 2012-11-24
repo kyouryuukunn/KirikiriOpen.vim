@@ -25,16 +25,22 @@ function s:JumpLabel(line,file) " {{{
 			let s:storagestart += strlen(a:file) + 1
 		endif
 		let s:storageend = stridx( a:line, '.ks', s:storagestart) + 2
-		if a:line !~ '\*' " ラベルが省略されているとき用
-			let s:path = findfile(strpart(a:line, s:storagestart, s:storageend - s:storagestart + 1), s:kirikiripath.s:split.'**')
-			exe ':e  '.s:path
+		
+		let s:storage = strpart(a:line, s:storagestart, s:storageend - s:storagestart + 1)
+		let s:label = strpart(a:line, s:labelstart, s:labelend - s:labelstart + 1)
+		let s:path = findfile(s:storage, s:kirikiripath.s:split.'**')
+		if !s:path == ''
+			if a:line !~ '\*' " ラベルが省略されているとき用
+				exe ':e  '.s:path
+			else
+				exe ':grep "^\'.s:label.'(\t|$)" '.s:path
+			endif
 		else
-			let s:path = findfile(strpart(a:line, s:storagestart, s:storageend - s:storagestart + 1), s:kirikiripath.s:split.'**')
-			exe ':grep ^\'.strpart(a:line, s:labelstart, s:labelend - s:labelstart + 1).' '.s:path
+			echo 'ファイルを発見出来ず	:file'.s:path
 		endif
 	else " 現在ファイルのラベルへジャンプ
-		if !search('^\'.strpart(a:line, s:labelstart, s:labelend - s:labelstart + 1).'\>','ws')
-			echo 'ラベルを発見出来ず'
+		if !search('^\'.s:label.'\>','ws')
+			echo 'ラベルを発見出来ず	label:'.s:label
 		endif
 		unlet! s:storageend
 	endif
