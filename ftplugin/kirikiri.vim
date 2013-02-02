@@ -80,7 +80,7 @@ function s:KirikiriFileOpen(line,file,command,exelist) " {{{
 			endif
 			" a:command ‚Í'/'‚Å‹æØ‚ç‚È‚¢‚Æ‚¾‚ß
 			" vimproc#system‚Í 'c:/aa/a.exe c:\\test.jpg' ‚© 'c:\\aa\\a.exe c:\\test.jpg'‚Å‚µ‚©“®‚©‚È‚¢
-			exe ':call vimproc#system_bg('''.a:command.' '.s:path.''')'
+			exe ':call vimproc#system_gui('''.a:command.' '.s:path.''')'
 		else
 			" ˆø‚«”‚ÌƒpƒX‚Í\‹æØ‚è‚Å‚È‚¢‚Æ‚¾‚ß
 			exe ":!".a:command.' "'.substitute(s:path, '/', '\\', 'g').'"'
