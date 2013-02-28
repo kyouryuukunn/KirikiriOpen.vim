@@ -4,10 +4,10 @@ if exists("b:did_ftplugin")
 endif
 let b:did_ftplugin = 1
 
-"‹ó”’‚Ì‚ ‚éƒpƒX‚Å‚Íg‚¦‚È‚¢ findfile
+"ç©ºç™½ã®ã‚ã‚‹ãƒ‘ã‚¹ã§ã¯ä½¿ãˆãªã„ findfile
 let s:save_cpo = &cpo
 setlocal cpo&vim
-if &ssl == 1 " shellslash‘Îô
+if &ssl == 1 " shellslashå¯¾ç­–
 	let s:split='/'
 else
 	let s:split='\'
@@ -18,8 +18,8 @@ function s:JumpLabel(line,file) " {{{
 	let s:labelstart = stridx(a:line, '*')
 	let s:labelend = match( a:line, '[ "\]]\|$', s:labelstart) - 1
 	let s:storagestart = stridx(a:line,a:file)
-	if s:storagestart != -1 " ŠO•”ƒtƒ@ƒCƒ‹‚ÖƒWƒƒƒ“ƒv
-		if a:line =~ 'storage=".*"' " ƒ_ƒuƒ‹ƒNƒH[ƒg‚ÅˆÍ‚Ü‚ê‚Ä‚¢‚é‚©
+	if s:storagestart != -1 " å¤–éƒ¨ãƒ•ã‚¡ã‚¤ãƒ«ã¸ã‚¸ãƒ£ãƒ³ãƒ—
+		if a:line =~ 'storage=".*"' " ãƒ€ãƒ–ãƒ«ã‚¯ã‚©ãƒ¼ãƒˆã§å›²ã¾ã‚Œã¦ã„ã‚‹ã‹
 			let s:storagestart += strlen(a:file) + 2
 		else
 			let s:storagestart += strlen(a:file) + 1
@@ -30,17 +30,17 @@ function s:JumpLabel(line,file) " {{{
 		let s:label = strpart(a:line, s:labelstart, s:labelend - s:labelstart + 1)
 		let s:path = findfile(s:storage, s:kirikiripath.s:split.'**')
 		if !s:path == ''
-			if a:line !~ '\*' " ƒ‰ƒxƒ‹‚ªÈ—ª‚³‚ê‚Ä‚¢‚é‚Æ‚«—p
+			if a:line !~ '\*' " ãƒ©ãƒ™ãƒ«ãŒçœç•¥ã•ã‚Œã¦ã„ã‚‹ã¨ãç”¨
 				exe ':e  '.s:path
 			else
 				exe ':grep "^\'.s:label.'(\t|$)" '.s:path
 			endif
 		else
-			echo 'ƒtƒ@ƒCƒ‹‚ğ”­Œ©o—ˆ‚¸	:file'.s:path
+			echo 'ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ç™ºè¦‹å‡ºæ¥ãš	:file'.s:path
 		endif
-	else " Œ»İƒtƒ@ƒCƒ‹‚Ìƒ‰ƒxƒ‹‚ÖƒWƒƒƒ“ƒv
+	else " ç¾åœ¨ãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒ©ãƒ™ãƒ«ã¸ã‚¸ãƒ£ãƒ³ãƒ—
 		if !search('^\'.s:label.'\>','ws')
-			echo 'ƒ‰ƒxƒ‹‚ğ”­Œ©o—ˆ‚¸	label:'.s:label
+			echo 'ãƒ©ãƒ™ãƒ«ã‚’ç™ºè¦‹å‡ºæ¥ãš	label:'.s:label
 		endif
 		unlet! s:storageend
 	endif
@@ -51,7 +51,7 @@ endif
 if !exists("*s:KirikiriFileOpen")
 function s:KirikiriFileOpen(line,file,command,exelist) " {{{
 	let s:storagestart = stridx(a:line,a:file)
-	if a:line =~ a:file.'=".*"' " "‚ª‚ ‚é‚©‚È‚¢‚©
+	if a:line =~ a:file.'=".*"' " "ãŒã‚ã‚‹ã‹ãªã„ã‹
 		let s:storagestart += strlen(a:file) + 2
 	else
 		let s:storagestart += strlen(a:file) + 1
@@ -59,7 +59,7 @@ function s:KirikiriFileOpen(line,file,command,exelist) " {{{
 	let s:storageend = match( a:line, '[ \]"]\|$', s:storagestart) - 1
 	let s:storagename = strpart(a:line, s:storagestart, s:storageend - s:storagestart + 1)
 	
-	if s:storagename =~ '\....' " Šg’£q‚ª3•¶š‘O’ñ
+	if s:storagename =~ '\....' " æ‹¡å¼µå­ãŒ3æ–‡å­—å‰æ
 		let s:path = findfile(s:storagename, s:kirikiripath.s:split.'**')
 	else
 		for s:exe in a:exelist
@@ -70,7 +70,7 @@ function s:KirikiriFileOpen(line,file,command,exelist) " {{{
 		endfor
 	endif
 	if !strlen(s:path)
-		echo 'path‚ğŠ“¾o—ˆ‚Ü‚¹‚ñ‚Å‚µ‚½B'
+		echo 'pathã‚’æ‰€å¾—å‡ºæ¥ã¾ã›ã‚“ã§ã—ãŸã€‚'
 	else
 		if g:kirikiriopen_use_vimproc == 1
 			if &ssl == 1
@@ -78,11 +78,11 @@ function s:KirikiriFileOpen(line,file,command,exelist) " {{{
 			else
 				let s:path = substitute(s:path, '\\', '\\\\', 'g')
 			endif
-			" a:command ‚Í'/'‚Å‹æØ‚ç‚È‚¢‚Æ‚¾‚ß
-			" vimproc#system‚Í 'c:/aa/a.exe c:\\test.jpg' ‚© 'c:\\aa\\a.exe c:\\test.jpg'‚Å‚µ‚©“®‚©‚È‚¢
+			" a:command ã¯'/'ã§åŒºåˆ‡ã‚‰ãªã„ã¨ã ã‚
+			" vimproc#systemã¯ 'c:/aa/a.exe c:\\test.jpg' ã‹ 'c:\\aa\\a.exe c:\\test.jpg'ã§ã—ã‹å‹•ã‹ãªã„
 			exe ':call vimproc#system_gui('''.a:command.' '.s:path.''')'
 		else
-			" ˆø‚«”‚ÌƒpƒX‚Í\‹æØ‚è‚Å‚È‚¢‚Æ‚¾‚ß
+			" å¼•ãæ•°ã®ãƒ‘ã‚¹ã¯\åŒºåˆ‡ã‚Šã§ãªã„ã¨ã ã‚
 			exe ":!".a:command.' "'.substitute(s:path, '/', '\\', 'g').'"'
 		endif
 	endif
@@ -92,8 +92,8 @@ endif
 
 if !exists("*s:KirikiriOpen")
 function s:KirikiriOpen() " {{{
-	" expand("%:p:h")‚Íƒtƒ@ƒCƒ‹‚ªƒJƒŒƒ“ƒgƒhƒ‰ƒCƒu‚É‚ ‚Á‚½‚çƒhƒ‰ƒCƒuƒŒƒ^[
-	" ‚È‚µA‚ ‚Á‚½‚ç‚ ‚è
+	" expand("%:p:h")ã¯ãƒ•ã‚¡ã‚¤ãƒ«ãŒã‚«ãƒ¬ãƒ³ãƒˆãƒ‰ãƒ©ã‚¤ãƒ–ã«ã‚ã£ãŸã‚‰ãƒ‰ãƒ©ã‚¤ãƒ–ãƒ¬ã‚¿ãƒ¼
+	" ãªã—ã€ã‚ã£ãŸã‚‰ã‚ã‚Š
 	let s:kirikiripath = strpart( expand("%:p:h"), 0, strridx(expand("%:p:h"), 'data') ).'data'
 	let s:line = getline(".")
 	if s:line =~ g:kirikiriopen_jump_dict.tag
@@ -110,9 +110,9 @@ endfunction " }}}
 endif
 
 if !exists("*s:KirikiriJump")
-function s:KirikiriJump() " ƒtƒH[ƒJƒXˆÚ“®‚ÌŠÖŒW‚ÅƒWƒƒƒ“ƒv‚¾‚¯•ª‚¯‚½B
-	" expand("%:p:h")‚Íƒtƒ@ƒCƒ‹‚ªƒJƒŒƒ“ƒgƒhƒ‰ƒCƒu‚É‚ ‚Á‚½‚çƒhƒ‰ƒCƒuƒŒƒ^[
-	" ‚È‚µA‚ ‚Á‚½‚ç‚ ‚è
+function s:KirikiriJump() " ãƒ•ã‚©ãƒ¼ã‚«ã‚¹ç§»å‹•ã®é–¢ä¿‚ã§ã‚¸ãƒ£ãƒ³ãƒ—ã ã‘åˆ†ã‘ãŸã€‚
+	" expand("%:p:h")ã¯ãƒ•ã‚¡ã‚¤ãƒ«ãŒã‚«ãƒ¬ãƒ³ãƒˆãƒ‰ãƒ©ã‚¤ãƒ–ã«ã‚ã£ãŸã‚‰ãƒ‰ãƒ©ã‚¤ãƒ–ãƒ¬ã‚¿ãƒ¼
+	" ãªã—ã€ã‚ã£ãŸã‚‰ã‚ã‚Š
 	let s:kirikiripath = strpart( expand("%:p:h"), 0, strridx(expand("%:p:h"), 'data') ).'data'
 	let s:line = getline(".")
 	call s:JumpLabel(s:line, g:kirikiriopen_jump_dict.file)
@@ -122,8 +122,8 @@ endif
 
 if !exists("*s:KirikiriExe")
 function s:KirikiriExe()
-	" expand("%:p:h")‚Íƒtƒ@ƒCƒ‹‚ªƒJƒŒƒ“ƒgƒhƒ‰ƒCƒu‚É‚ ‚Á‚½‚çƒhƒ‰ƒCƒuƒŒƒ^[
-	" ‚È‚µA‚ ‚Á‚½‚ç‚ ‚è
+	" expand("%:p:h")ã¯ãƒ•ã‚¡ã‚¤ãƒ«ãŒã‚«ãƒ¬ãƒ³ãƒˆãƒ‰ãƒ©ã‚¤ãƒ–ã«ã‚ã£ãŸã‚‰ãƒ‰ãƒ©ã‚¤ãƒ–ãƒ¬ã‚¿ãƒ¼
+	" ãªã—ã€ã‚ã£ãŸã‚‰ã‚ã‚Š
 	let s:kirikiripath = strpart( expand("%:p:h"), 0, strridx(expand("%:p:h"), 'data') )
 	if g:kirikiriopen_use_vimproc == 1
 		exec ':call vimproc#system_bg('''.s:kirikiripath.'krkr.eXe'')'

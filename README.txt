@@ -1,30 +1,30 @@
-vim‚Å‹g—¢‹g—¢/kag‚ÌƒVƒiƒŠƒIƒtƒ@ƒCƒ‹‚©‚ç‹g—¢‹g—¢–{‘Ì‚Ì‹N“®Aƒ‰ƒxƒ‹ƒWƒƒƒ“ƒv‚â‰æ‘œA‰¹ºƒtƒ@ƒCƒ‹‚ðŠJ‚­ 
+vimã§å‰é‡Œå‰é‡Œ/kagã®ã‚·ãƒŠãƒªã‚ªãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰å‰é‡Œå‰é‡Œæœ¬ä½“ã®èµ·å‹•ã€ãƒ©ãƒ™ãƒ«ã‚¸ãƒ£ãƒ³ãƒ—ã‚„ç”»åƒã€éŸ³å£°ãƒ•ã‚¡ã‚¤ãƒ«ã‚’é–‹ã 
 
-•K—v‚ÈÝ’è
-ŠO•”grep‚ª•K—v
+å¿…è¦ãªè¨­å®š
+å¤–éƒ¨grepãŒå¿…è¦
 
-ƒtƒ@ƒCƒ‹‚ðŠJ‚­‚½‚ß‚ÌÝ’è
+ãƒ•ã‚¡ã‚¤ãƒ«ã‚’é–‹ããŸã‚ã®è¨­å®š
 let g:kirikiriopen_list = [
-	\{'tag':'³‹K•\Œ»‚Å‘ÎÛ‚Æ‚·‚éƒ^ƒO‚ðŽw’è','file':'‚±‚Ì‘®«‚Ìˆø”‚Ìƒtƒ@ƒCƒ‹‚ðŠJ‚­','command':'ƒtƒ@ƒCƒ‹‚ðŠJ‚­ƒ\ƒtƒg\‚Å‚Í‚È‚­/‚Å‹æØ‚ç‚È‚¢‚Æ‚¢‚¯‚È‚¢','exelist': 'ƒtƒ@ƒCƒ‹‚ÌŠg’£ŽqƒŠƒXƒg'}
+	\{'tag':'æ­£è¦è¡¨ç¾ã§å¯¾è±¡ã¨ã™ã‚‹ã‚¿ã‚°ã‚’æŒ‡å®š','file':'ã“ã®å±žæ€§ã®å¼•æ•°ã®ãƒ•ã‚¡ã‚¤ãƒ«ã‚’é–‹ã','command':'ãƒ•ã‚¡ã‚¤ãƒ«ã‚’é–‹ãã‚½ãƒ•ãƒˆ\ã§ã¯ãªã/ã§åŒºåˆ‡ã‚‰ãªã„ã¨ã„ã‘ãªã„','exelist': 'ãƒ•ã‚¡ã‚¤ãƒ«ã®æ‹¡å¼µå­ãƒªã‚¹ãƒˆ'}
 	\]
 
-ƒ‰ƒxƒ‹ƒWƒƒƒ“ƒv‚Ì‚½‚ß‚ÌÝ’èAcommand,exelist‚Í‚¢‚ç‚È‚¢
-let g:kirikiriopen_jump_dict = {'tag':'³‹K•\Œ»‚Å‘ÎÛ‚Æ‚·‚éƒ^ƒO‚ðŽw’è','file':'‚±‚Ì‘®«‚Ìˆø”‚Ìƒtƒ@ƒCƒ‹‚ðŠJ‚­'}
+ãƒ©ãƒ™ãƒ«ã‚¸ãƒ£ãƒ³ãƒ—ã®ãŸã‚ã®è¨­å®šã€command,exelistã¯ã„ã‚‰ãªã„
+let g:kirikiriopen_jump_dict = {'tag':'æ­£è¦è¡¨ç¾ã§å¯¾è±¡ã¨ã™ã‚‹ã‚¿ã‚°ã‚’æŒ‡å®š','file':'ã“ã®å±žæ€§ã®å¼•æ•°ã®ãƒ•ã‚¡ã‚¤ãƒ«ã‚’é–‹ã'}
 
-" vimproc‚ªƒCƒ“ƒXƒg[ƒ‹‚³‚ê‚Ä‚¢‚é‚©‚Ç‚¤‚©
+" vimprocãŒã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«ã•ã‚Œã¦ã„ã‚‹ã‹ã©ã†ã‹
 let g:kirikiriopen_use_vimproc = 1
 
-ƒ‰ƒxƒ‹ƒWƒƒƒ“ƒvAƒtƒ@ƒCƒ‹‚ðŠJ‚­ƒRƒ}ƒ“ƒhKirikiriOpen‚ðD‚«‚ÈƒRƒ}ƒ“ƒh‚Éƒ}ƒbƒv‚·‚é
+ãƒ©ãƒ™ãƒ«ã‚¸ãƒ£ãƒ³ãƒ—ã€ãƒ•ã‚¡ã‚¤ãƒ«ã‚’é–‹ãã‚³ãƒžãƒ³ãƒ‰KirikiriOpenã‚’å¥½ããªã‚³ãƒžãƒ³ãƒ‰ã«ãƒžãƒƒãƒ—ã™ã‚‹
 autocmd! BufNew,BufRead *.ks	nnoremap <buffer> <S-K> :KirikiriOpen<CR>
 
-ƒ‰ƒxƒ‹ƒWƒƒƒ“ƒv‚Ì‚Ý‚ÌƒRƒ}ƒ“ƒhKirikiriJump‚ðD‚«‚ÈƒRƒ}ƒ“ƒh‚Éƒ}ƒbƒv‚·‚é
+ãƒ©ãƒ™ãƒ«ã‚¸ãƒ£ãƒ³ãƒ—ã®ã¿ã®ã‚³ãƒžãƒ³ãƒ‰KirikiriJumpã‚’å¥½ããªã‚³ãƒžãƒ³ãƒ‰ã«ãƒžãƒƒãƒ—ã™ã‚‹
 autocmd! BufNew,BufRead *.ks	nnoremap <buffer> <C-]> :KirikiriJump<CR>
 
-‹g—¢‹g—¢–{‘Ì‚ð‹N“®‚·‚éƒRƒ}ƒ“ƒhKirikiriExe‚ðD‚«‚ÈƒRƒ}ƒ“ƒh‚Éƒ}ƒbƒv‚·‚é
+å‰é‡Œå‰é‡Œæœ¬ä½“ã‚’èµ·å‹•ã™ã‚‹ã‚³ãƒžãƒ³ãƒ‰KirikiriExeã‚’å¥½ããªã‚³ãƒžãƒ³ãƒ‰ã«ãƒžãƒƒãƒ—ã™ã‚‹
 autocmd! BufNew,BufRead *.ks	nnoremap <buffer> <F5> :KirikiriEXe<CR>
 
-—á
- " vimroc‚ðŽg‚¤‚È‚ç1 ‚¢‚¿‚¢‚¿DOS‰æ–Ê‚ªŠJ‚©‚È‚¢
+ä¾‹
+ " vimrocã‚’ä½¿ã†ãªã‚‰1 ã„ã¡ã„ã¡DOSç”»é¢ãŒé–‹ã‹ãªã„
 let g:kirikiriopen_use_vimproc = 1
 
 let g:kirikiriopen_jump_dict = {'tag': 'call\|jump\|link\|button', 'file':'storage'}
@@ -41,13 +41,13 @@ autocmd! BufNew,BufRead *.ks,*.tjs	set filetype=kirikiri
 					\ | nnoremap <buffer> <F5>  :KirikiriExe<CR>
 
 
-‚â‚Á‚Ä‚¢‚é‚±‚Æ
-Œ»Ýs‚ðtag‚ÅŒŸõ‚µAŒ©•t‚¯‚½tag‚É‘Î‰ž‚·‚éfile‚ÉŽw’è‚³‚ê‚½‘®«‚Ìˆø”‚ÉA
-exelist‚ÌŠg’£Žq‚ð‚­‚Á‚Â‚¯‚Äƒtƒ@ƒCƒ‹‚ðŒŸõ‚µAŒ©•t‚¯‚½‚çcommand‚ÉŽw’è‚µ‚½ƒ\ƒtƒg
-‚ÅŠJ‚­B
+ã‚„ã£ã¦ã„ã‚‹ã“ã¨
+ç¾åœ¨è¡Œã‚’tagã§æ¤œç´¢ã—ã€è¦‹ä»˜ã‘ãŸtagã«å¯¾å¿œã™ã‚‹fileã«æŒ‡å®šã•ã‚ŒãŸå±žæ€§ã®å¼•æ•°ã«ã€
+exelistã®æ‹¡å¼µå­ã‚’ãã£ã¤ã‘ã¦ãƒ•ã‚¡ã‚¤ãƒ«ã‚’æ¤œç´¢ã—ã€è¦‹ä»˜ã‘ãŸã‚‰commandã«æŒ‡å®šã—ãŸã‚½ãƒ•ãƒˆ
+ã§é–‹ãã€‚
 
-ƒoƒO
-ƒtƒHƒ‹ƒ_\¬‚ªŽŸ‚Ì‚æ‚¤‚Å‚ ‚é‚±‚Æ‚ð‘O’ñ
+ãƒã‚°
+ãƒ•ã‚©ãƒ«ãƒ€æ§‹æˆãŒæ¬¡ã®ã‚ˆã†ã§ã‚ã‚‹ã“ã¨ã‚’å‰æ
 -----data----scenario
    |	   |
    |       |-image
@@ -59,11 +59,11 @@ exelist‚ÌŠg’£Žq‚ð‚­‚Á‚Â‚¯‚Äƒtƒ@ƒCƒ‹‚ðŒŸõ‚µAŒ©•t‚¯‚½‚çcommand‚ÉŽw’è‚µ‚½ƒ\ƒtƒg
    |
    |--krkr.eXe
 
-‹ó”’‚ðŠÜ‚ÞƒpƒX‚ÉƒvƒƒWƒFƒNƒgƒtƒHƒ‹ƒ_‚ª‚ ‚é‚ÆŠJ‚¯‚È‚¢ (‹ó”’‚ðŠÜ‚ÞƒpƒX‚Åƒtƒ@ƒCƒ‹‚ðŒŸõ‚·‚é•û–@‚ª•ª‚©‚ç‚È‚¢)
-‘®«‚Æ=‚ÌŠÔ‚É‹ó”’‚ª‚ ‚é‚ÆŠJ‚¯‚È‚¢
-windows‚Å‚µ‚©“®‚©‚È‚¢(windows‚Å‚µ‚©Žg‚í‚È‚¢‚ÆŽv‚¤‚¯‚Ç)
-‘½•ª‘¼‚É‚àƒoƒOˆê”t
+ç©ºç™½ã‚’å«ã‚€ãƒ‘ã‚¹ã«ãƒ—ãƒ­ã‚¸ã‚§ã‚¯ãƒˆãƒ•ã‚©ãƒ«ãƒ€ãŒã‚ã‚‹ã¨é–‹ã‘ãªã„ (ç©ºç™½ã‚’å«ã‚€ãƒ‘ã‚¹ã§ãƒ•ã‚¡ã‚¤ãƒ«ã‚’æ¤œç´¢ã™ã‚‹æ–¹æ³•ãŒåˆ†ã‹ã‚‰ãªã„)
+å±žæ€§ã¨=ã®é–“ã«ç©ºç™½ãŒã‚ã‚‹ã¨é–‹ã‘ãªã„
+windowsã§ã—ã‹å‹•ã‹ãªã„(windowsã§ã—ã‹ä½¿ã‚ãªã„ã¨æ€ã†ã‘ã©)
+å¤šåˆ†ä»–ã«ã‚‚ãƒã‚°ä¸€æ¯
 
 
-ƒrƒ…ƒA[‚É‚ÍVix‚ª‚¨Š©‚ßB‘½d‹N“®‚ª–h‚°‚Ätlg‚ª“Ç‚ß‚éB
-‚Ü‚½Aautohotkey‚â‘‹Žg‚¢‚Ì—JŸT‚ÅKirikiriOpenƒRƒ}ƒ“ƒh‚ðƒ‰ƒbƒv‚·‚ê‚ÎƒtƒH[ƒJƒX‚ð‚·‚®‚Évim‚É–ß‚¹‚éB
+ãƒ“ãƒ¥ã‚¢ãƒ¼ã«ã¯VixãŒãŠå‹§ã‚ã€‚å¤šé‡èµ·å‹•ãŒé˜²ã’ã¦tlgãŒèª­ã‚ã‚‹ã€‚
+ã¾ãŸã€autohotkeyã‚„çª“ä½¿ã„ã®æ†‚é¬±ã§KirikiriOpenã‚³ãƒžãƒ³ãƒ‰ã‚’ãƒ©ãƒƒãƒ—ã™ã‚Œã°ãƒ•ã‚©ãƒ¼ã‚«ã‚¹ã‚’ã™ãã«vimã«æˆ»ã›ã‚‹ã€‚
